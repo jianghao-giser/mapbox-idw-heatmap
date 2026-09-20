@@ -149,7 +149,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, onUnmounted } from 'vue';
-import mapboxgl from '@hehai/mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 import { MapboxInterpolateHeatmapLayer } from './layer-refactored';
 
 // 导入数据

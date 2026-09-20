@@ -20,11 +20,11 @@
     "visualization",
     "webgl"
   ],
-  "author": "你的名字",
+  "author": "jianghao-giser",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/你的用户名/mapbox-idw-heatmap.git"
+    "url": "https://github.com/jianghao-giser/mapbox-idw-heatmap.git"
   },
   "peerDependencies": {
     "mapbox-gl": "^2.0.0 || ^3.0.0"

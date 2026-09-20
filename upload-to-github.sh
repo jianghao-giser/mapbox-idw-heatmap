@@ -40,11 +40,30 @@ echo -e "${BLUE}当前仓库状态:${NC}"
 git status -s
 echo ""
 
+# 检查 GitHub Token
+if [ -z "$GITHUB_TOKEN" ]; then
+    echo -e "${YELLOW}⚠️  未检测到 GITHUB_TOKEN 环境变量${NC}"
+    echo -e "${YELLOW}如果推送失败，请设置 token:${NC}"
+    echo -e "  export GITHUB_TOKEN=\"你的token\"\n"
+fi
+
 # 推送到 GitHub
 echo -e "${BLUE}开始推送到 GitHub...${NC}\n"
 git branch -M main
 
+# 如果有 token，使用 token 认证
+if [ ! -z "$GITHUB_TOKEN" ]; then
+    # 临时修改 remote URL 使用 token
+    original_url=$(git remote get-url origin)
+    username=$(echo "$original_url" | sed -n 's|https://github.com/\([^/]*\)/.*|\1|p')
+    git remote set-url origin "https://${username}:${GITHUB_TOKEN}@github.com/${username}/mapbox-idw-heatmap.git"
+fi
+
 if git push -u origin main; then
+    # 恢复原始 URL（移除 token）
+    if [ ! -z "$GITHUB_TOKEN" ] && [ ! -z "$original_url" ]; then
+        git remote set-url origin "$original_url"
+    fi
     echo ""
     echo -e "${GREEN}========================================${NC}"
     echo -e "${GREEN}  ✓ 成功推送到 GitHub!${NC}"

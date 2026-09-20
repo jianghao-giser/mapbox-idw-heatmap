@@ -25,9 +25,26 @@ yarn add mapbox-idw-heatmap
 
 ## 🚀 快速开始
 
+### HTML 示例（无需构建工具）⭐
+
+想要快速体验？查看 [`examples/rain-heatmap-demo.html`](./examples/rain-heatmap-demo.html)
+
+1. 获取免费的 [Mapbox Token](https://account.mapbox.com/)
+2. 用文本编辑器打开 `examples/rain-heatmap-demo.html`
+3. 替换第 237 行的 token
+4. 双击文件在浏览器中打开
+
+🎉 完成！你会看到一个交互式的降雨量热力图演示。
+
+详细说明：[examples/如何使用HTML示例.md](./examples/如何使用HTML示例.md)
+
+---
+
+### TypeScript / JavaScript
+
 ```typescript
 import mapboxgl from 'mapbox-gl';
-import { MapboxInterpolateHeatmapLayer } from 'mapbox-idw-heatmap';
+import { MapboxIDWHeatmapLayer } from 'mapbox-idw-heatmap';
 
 // 初始化地图
 const map = new mapboxgl.Map({
@@ -46,7 +63,7 @@ const data = [
 ];
 
 // 创建热力图层
-const heatmapLayer = new MapboxInterpolateHeatmapLayer({
+const heatmapLayer = new MapboxIDWHeatmapLayer({
   id: 'rainfall-heatmap',
   data: data,
   minValue: 0,
